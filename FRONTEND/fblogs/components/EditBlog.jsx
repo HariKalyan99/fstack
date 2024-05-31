@@ -22,8 +22,8 @@ const EditBlog = ({displayEdit,
         const bodyVal = body;
         // const usernameVal = username;
         const tagsVal = tags;
-        const reactionsVal = reactions
-        edit({title: titleVal, body: bodyVal, tags: tagsVal.split(","), reactions: Number(reactionsVal)}, blog.id);
+        // const reactionsVal = reactions
+        edit({title: titleVal, body: bodyVal, tags: tagsVal.split(",")}, blog._id);
         setDisplayEdit(!displayEdit)
     }
   return (

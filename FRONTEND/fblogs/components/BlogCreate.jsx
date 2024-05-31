@@ -1,10 +1,11 @@
 import  { useContext, useRef } from 'react'
-import {v4 as uuidv4} from 'uuid'
+// import {v4 as uuidv4} from 'uuid'
 import { blogsStore } from '../store/blogsstore'
+import { useNavigate } from 'react-router-dom'
 
 const BlogCreate = () => {
 
-    const {add, toggleView} = useContext(blogsStore)
+    const {add, toggleView, displayToggle} = useContext(blogsStore)
 
     const fullnameRef = useRef("")
     const userIdRef = useRef("")
@@ -13,18 +14,23 @@ const BlogCreate = () => {
     const bodyRef = useRef("")
     const usernameRef = useRef("")
     const tagsRef = useRef("")
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate()
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        add({title: titleRef.current.value, body: bodyRef.current.value, tags: tagsRef.current.value.split(","), reactions: Number(reactionsRef.current.value), id: uuidv4()})
+        add({title: titleRef.current.value, body: bodyRef.current.value, tags: tagsRef.current.value.split(",")})
         userIdRef.current.value = ""
         titleRef.current.value = ""
         bodyRef.current.value = ""
         tagsRef.current.value = ""
         reactionsRef.current.value = ""
+        displayToggle("blogs");
+        navigate("/blogs-display")
+
     }
-  if(toggleView === "home"){
+  if(toggleView === "home" && token){
     return (
         <form className='d-flex flex-column justify-content-center align-items-center gap-2 w-100' onSubmit={(e) => handleSubmit(e)}>
             <label>fullname</label>

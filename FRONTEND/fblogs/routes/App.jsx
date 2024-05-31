@@ -1,5 +1,5 @@
-import BlogCreate from "../components/BlogCreate"
-import BlogDisplay from "../components/BlogDisplay"
+import { Outlet } from "react-router-dom"
+
 import BlogHeader from "../components/BlogHeader"
 import BlogSidebar from "../components/BlogSidebar"
 import BlogStoreProvider from "../store/blogsstore"
@@ -15,8 +15,7 @@ function App() {
       <BlogHeader />
       <div className='d-flex w-100'>
       <BlogSidebar />
-      <BlogDisplay />  
-      <BlogCreate />
+      <Outlet />
       </div>
     </BlogStoreProvider>
   )

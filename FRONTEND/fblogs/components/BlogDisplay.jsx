@@ -2,10 +2,12 @@ import { useContext} from "react"
 import Blogs from "./Blogs"
 import { blogsStore } from "../store/blogsstore"
 
+
 const BlogDisplay = () => {
     const {blogsList, toggleView} = useContext(blogsStore)
+    const token = localStorage.getItem('token');
   
-  if(toggleView === 'blogs'){
+  if(toggleView === 'blogs' && token){
     return (
         <div className="album py-5 bg-body-tertiary">
         <div className="container-fluid">
